@@ -55,7 +55,7 @@ async def change_message(parent: Client, message: discord.Message) -> None:
     await message.channel.send("Sending a test message")
     embed = await parent._create_dm_embed(message.author)
     await message.channel.send(embed=embed)
-
+in 
 
 async def change_title(parent: Client, message: discord.Message) -> None:
     """Changes the title of DM embeds
@@ -71,3 +71,10 @@ async def change_title(parent: Client, message: discord.Message) -> None:
     await message.channel.send("Sending a test message")
     embed = await parent._create_dm_embed(message.author)
     await message.channel.send(embed=embed)
+
+async def help(parent: Client, message: discord.Message) -> None:
+    log.info(f"Sending a help message for {message.guild.name}")
+    set_unset_embed = discord.Embed(title="Set/Unset Help", description=f"To set which channel to forward messages to use {parent.command_prefix}set.\nTo remove the forwarding channel use {parent.command_prefix}unset.", color=color=discord.Color.dark_green())
+    change_message_embed = discord.Embed(title="Change Message/Title Help", description=f"Using {parent.command_prefix}change title or {parent.command_prefix}change message will change the message sent to new members.\nThe title is the string that will show up at the top of the message and message is the text body that will be sent.\nThere are two available format strings {{member_name}} and {{guild_name}}, these will be replaced in the messages sent with the name of the member and the server name. They are available in both the title and message.", color=discord.Color.dark_green())
+    await message.channel.send(embed=set_unset_embed)
+    await message.channel.send(embed=change_message_embed)
