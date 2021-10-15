@@ -2,7 +2,7 @@ from typing import Dict
 import discord, json, logging
 import Commands
 
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 
 
 class Client(discord.Client):
@@ -164,6 +164,8 @@ class Client(discord.Client):
                 await Commands.change_message(self, message)
             elif message.content.startswith(f"{self.command_prefix}change title"):
                 await Commands.change_title(self, message)
+            elif message.content.startswith(f"{self.command_prefix}help"):
+                await Commands.help(self, message)
         return
 
     async def on_message(self, message: discord.Message) -> None:
