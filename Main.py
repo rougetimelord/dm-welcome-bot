@@ -2,7 +2,7 @@ from typing import Dict
 import discord, json, logging
 import Commands
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 
 class Client(discord.Client):
@@ -54,7 +54,7 @@ class Client(discord.Client):
             title=title.format(
                 member_name=member.display_name, guild_name=member.guild.name
             ),
-            description=message.forma(
+            description=message.format(
                 member_name=member.display_name, guild_name=member.guild.name
             ),
             color=discord.Color.dark_green(),
