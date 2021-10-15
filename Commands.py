@@ -55,7 +55,6 @@ async def change_message(parent: Client, message: discord.Message) -> None:
     await message.channel.send("Sending a test message")
     embed = await parent._create_dm_embed(message.author)
     await message.channel.send(embed=embed)
-in 
 
 async def change_title(parent: Client, message: discord.Message) -> None:
     """Changes the title of DM embeds
