@@ -25,6 +25,13 @@ class Client(discord.Client):
         except FileNotFoundError as e:
             self._dump_to_file()
 
+        await self.change_presence(
+            activity=discord.Activity(
+                name=f"Admins use {self.command_prefix}help to get help!",
+                type=discord.ActivityType.watching,
+            )
+        )
+
     async def _dump_to_file(self) -> None:
         """Dumps config to disk, does not care if it's already there"""
         with open("data/servers.json", "w+") as f:
