@@ -74,6 +74,12 @@ async def change_title(parent: Client, message: discord.Message) -> None:
 
 
 async def help(parent: Client, message: discord.Message) -> None:
+    """Sends a help message for admins
+
+    Args:
+        parent (Client): The parent bot instance
+        message (discord.Message): The message that got here
+    """
     log.info(f"Sending a help message for {message.guild.name}")
     set_unset_embed = discord.Embed(
         title="Set/Unset Help",
