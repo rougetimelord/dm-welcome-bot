@@ -2,11 +2,11 @@ from typing import Dict
 import discord, json, logging
 import Commands
 
-VERSION = "0.0.3"
+VERSION = "0.0.4"
 
 
 class Client(discord.Client):
-    command_prefix = "!"
+    command_prefix = "👋"
 
     async def on_ready(self) -> None:
         """On ready event listener that updates activity and loads config"""
@@ -17,7 +17,7 @@ class Client(discord.Client):
             )
         )
 
-        self._servers: Dict[str, str] = {}
+        self._servers: Dict[str, Dict[str, str]] = {}
         self._user_to_server: Dict[str, str] = {}
         try:
             with open("data/servers.json", "r") as f:

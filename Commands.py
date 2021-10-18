@@ -11,7 +11,7 @@ async def set_channel(parent: Client, message: discord.Message) -> None:
         parent (Client): The parent bot instance
         message (discord.Message): The message that got us here
     """
-    parent._servers[message.guild]["channel"] = message.channel.id
+    parent._servers[message.guild.id]["channel"] = message.channel.id
     await parent._dump_to_file()
     log.info(f"Set channel in {message.guild.name}")
 
@@ -30,7 +30,7 @@ async def unset_channel(parent: Client, message: discord.Message) -> None:
         parent (Client): The parent bot instance
         message (discord.Message): The message that got us here
     """
-    parent._servers[message.guild].pop("channel", None)
+    parent._servers[message.guild.id].pop("channel", None)
     await parent._dump_to_file()
     log.info(f"Set channel in {message.guild.name}")
 
