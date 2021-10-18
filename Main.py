@@ -1,5 +1,5 @@
 from typing import Dict
-import discord, json, logging
+import discord, json, logging, traceback
 import Commands
 
 VERSION = "0.0.4"
@@ -163,16 +163,20 @@ class Client(discord.Client):
         if await self._check_admin(message.author) or await self._check_owner(
             message.author
         ):
-            if message.content.startswith(f"{self.command_prefix}set"):
-                await Commands.set_channel(self, message)
-            elif message.content.startswith(f"{self.command_prefix}unset"):
-                await Commands.unset_channel(self, message)
-            elif message.content.startswith(f"{self.command_prefix}change message"):
-                await Commands.change_message(self, message)
-            elif message.content.startswith(f"{self.command_prefix}change title"):
-                await Commands.change_title(self, message)
-            elif message.content.startswith(f"{self.command_prefix}help"):
-                await Commands.help(self, message)
+            try:
+                if message.content.startswith(f"{self.command_prefix}set"):
+                    await Commands.set_channel(self, message)
+                elif message.content.startswith(f"{self.command_prefix}unset"):
+                    await Commands.unset_channel(self, message)
+                elif message.content.startswith(f"{self.command_prefix}change message"):
+                    await Commands.change_message(self, message)
+                elif message.content.startswith(f"{self.command_prefix}change title"):
+                    await Commands.change_title(self, message)
+                elif message.content.startswith(f"{self.command_prefix}help"):
+                    await Commands.help(self, message)
+            except discord.errors.Forbidden as e:
+                log.error(traceback.format_exception(e), f"In {message.guild.name}")
+                await message.channel.send("Give me embed permissions.")
         return
 
     async def on_message(self, message: discord.Message) -> None:
