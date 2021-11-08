@@ -5,6 +5,7 @@ import Commands
 VERSION = "0.0.4"
 
 import logging
+
 log = logging.getLogger(__name__)
 logging.basicConfig(
     format="[%(name)s][%(levelname)s] %(message)s",
@@ -221,5 +222,5 @@ def main():
         exit(1)
 
 
-if __name__ == "__main__":   
+if __name__ == "__main__":
     main()
