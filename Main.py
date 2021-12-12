@@ -2,7 +2,7 @@ from typing import Dict
 import discord, json, logging, traceback
 import Commands
 
-VERSION = "0.0.4"
+VERSION = "0.0.5"
 
 
 class Client(discord.Client):
@@ -130,7 +130,8 @@ class Client(discord.Client):
         self._user_to_server.pop(message.author.id, None)
         return
 
-    async def _check_admin(self, member: discord.Member) -> bool:
+    @staticmethod
+    async def _check_admin(member: discord.Member) -> bool:
         """Checks if a member is an admin in the guild
 
         Args:
@@ -160,7 +161,7 @@ class Client(discord.Client):
             message (discord.Message): The message with a command in it
         """
         log.info("Got a command")
-        if await self._check_admin(message.author) or await self._check_owner(
+        if await Client._check_admin(message.author) or await self._check_owner(
             message.author
         ):
             try:
