@@ -4,6 +4,14 @@ import Commands
 
 VERSION = "0.0.5"
 
+import logging
+
+log = logging.getLogger(__name__)
+logging.basicConfig(
+    format="[%(name)s][%(levelname)s] %(message)s",
+    level=logging.INFO,
+)
+
 
 class Client(discord.Client):
     command_prefix = "👋"
@@ -198,6 +206,8 @@ class Client(discord.Client):
 
 def main():
     """Main method, starts everything glhf"""
+    log.info(f"DM Bot v{VERSION} started")
+
     intents = discord.Intents.default()
     intents.members = True
     intents.presences = True
@@ -214,10 +224,4 @@ def main():
 
 
 if __name__ == "__main__":
-    log = logging.getLogger()
-    logging.basicConfig(
-        format="[%(name)s][%(levelname)s] %(message)s",
-        level=logging.INFO,
-    )
-    log.info(f"DM Bot v{VERSION} started")
     main()
