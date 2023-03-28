@@ -19,11 +19,6 @@ class Client(discord.Client):
     async def on_ready(self) -> None:
         """On ready event listener that updates activity and loads config"""
         log.info(f"logged in as {self.user.name} with id {self.user.id}")
-        await self.change_presence(
-            activity=discord.Activity(
-                name="Greeting discorders", type=discord.ActivityType.custom
-            )
-        )
 
         self._servers: Dict[str, Dict[str, str]] = {}
         self._user_to_server: Dict[str, str] = {}
