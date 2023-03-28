@@ -2,7 +2,7 @@ from typing import Dict
 import discord, json, logging, traceback
 import Commands
 
-VERSION = "0.0.6"
+VERSION = "0.0.7"
 
 import logging
 
@@ -52,13 +52,8 @@ class Client(discord.Client):
             discord.Embed: The embed to send off
         """
         gid = member.guild.id
-        title = self._servers["default_title"]
-        message = self._servers["default_message"]
-
-        if "title" in self._servers[gid]:
-            title = self._servers[gid]["title"]
-        if "message" in self._servers[gid]:
-            message = self._servers[gid]["message"]
+        title = (self._servers["default_title"], self._servers[gid]["title"])[ "title" in self._servers[gid] ]
+        message = (self._servers["default_message"], self._servers[gid]["message"])[ "message" in self._servers[gid] ]
 
         embed = discord.Embed(
             title=title.format(
