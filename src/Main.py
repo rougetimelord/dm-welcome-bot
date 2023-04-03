@@ -52,8 +52,12 @@ class Client(discord.Client):
             discord.Embed: The embed to send off
         """
         gid = member.guild.id
-        title = (self._servers["default_title"], self._servers[gid]["title"])[ "title" in self._servers[gid] ]
-        message = (self._servers["default_message"], self._servers[gid]["message"])[ "message" in self._servers[gid] ]
+        title = (self._servers["default_title"], self._servers[gid]["title"])[
+            "title" in self._servers[gid]
+        ]
+        message = (self._servers["default_message"], self._servers[gid]["message"])[
+            "message" in self._servers[gid]
+        ]
 
         embed = discord.Embed(
             title=title.format(
